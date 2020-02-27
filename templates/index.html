@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp"/>
+		<title>Compiler Spider</title>
+		<link href="https://cdn.bootcss.com/mdui/0.4.3/css/mdui.min.css" rel="stylesheet">
+		<link rel="icon" href="{{ url_for('static', filename='icon.jpeg') }}">
+		<link rel="apple-touch-icon" href="{{ url_for('static', filename='icon.jpeg') }}">
+		{% block head %} {% endblock %}
+	</head>
+	<body class="mdui-theme-primary-deep-purple mdui-theme-accent-deep-purple">
+
+		<div class="mdui-toolbar mdui-color-theme">
+			<span class="mdui-typo-title">Compiler Spider</span>
+			<div class="mdui-toolbar-spacer"></div>
+		</div>
+
+		<div class="mdui-container">
+
+			<div class="mdui-panel" mdui-panel>
+
+				<div class="mdui-typo">
+					<h2>Github repos</h2>
+				</div>
+
+				<div class="mdui-typo">
+					<p><center><img src="https://i.loli.net/2020/02/26/pRXkEWL5MrsmfvD.jpg" /></center></p>
+					<p>Sorted by the last commit time. Click on rows for commit details.</p>
+				</div>
+
+				{% for k, v in res %}
+				<div class="mdui-panel-item">
+					<div class="mdui-panel-item-header">
+						<div class="mdui-panel-item-title">{{ k }}</div>
+						<div class="mdui-panel-item-summary">Last commit: {{ v[0] }}</div>
+					</div>
+					<div class="mdui-panel-item-body">
+						{% for i in v %}
+						<p>{{ i }}</p>
+						{% endfor %}
+					</div>
+				</div>
+				{% endfor %}
+
+				<div class="mdui-typo">
+					<p>Last updated: {{ time }}</p>
+				</div>
+
+				<footer>
+					<div class="mdui-typo-caption-opacity" align="center"> </div>
+				</footer>
+
+			</div>
+
+			<script src="https://cdn.bootcss.com/mdui/0.4.3/js/mdui.min.js"></script>
+
+	</body>
+</html>

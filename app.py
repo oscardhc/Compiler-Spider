@@ -16,21 +16,19 @@ def hs(s):
         res = (res * 233 + ord(c)) % mod
     return str(res)
 
-def init():
-    for url in a:
-        h = hs(url)
-        if not os.path.exists(h):
-            os.system('mkdir ' + h + '; cd ' + h + '; git clone ' + url + r';')
-    update()
-
 def byStr(t):
     return t[1][0]
 
 def update():
     global a, res, t
+    with open('urls.txt', 'r') as f:
+        a = f.read().split('\n')
+        a.remove('')
     _res = []
     for url in a:
         h = hs(url)
+        if not os.path.exists(h):
+            os.system('mkdir ' + h + '; cd ' + h + '; git clone ' + url + r';')
         os.system('cd ' + h + r'/*; git pull; git log --pretty=format:"%ad: %s" --date=format:"%Y-%m-%d %H:%M:%S" > ../log.txt')
         with open(h + r'/log.txt', 'r') as f:
             _res.append((url[19:], f.read().split('\n')))
@@ -40,12 +38,6 @@ def update():
     time.sleep(60)
 
 def backend():
-    global a
-    with open('urls.txt', 'r') as f:
-        a = f.read().split('\n')
-        a.remove('')
-    print(a)
-    init()
     while True:
         update()
 

@@ -31,7 +31,7 @@ def update():
             os.system('mkdir ' + h + '; cd ' + h + '; git clone ' + url + r';')
         os.system('cd ' + h + r'/*; git pull; git log --pretty=format:"%ad: %s" --date=format:"%Y-%m-%d %H:%M:%S" > ../log.txt')
         with open(h + r'/log.txt', 'r') as f:
-            _res.append((url[19:], f.read().split('\n')))
+            _res.append((url, f.read().split('\n')))
     t = datetime.datetime.now()
     res = sorted(_res, key=byStr)
     res.reverse()

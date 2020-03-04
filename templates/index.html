@@ -35,13 +35,17 @@
 				{% for k, v in res %}
 				<div class="mdui-panel-item">
 					<div class="mdui-panel-item-header">
-						<div class="mdui-panel-item-title">{{ k }}</div>
+						<div class="mdui-panel-item-title">{{ k[19:] }}</div>
 						<div class="mdui-panel-item-summary">Last commit: {{ v[0] }}</div>
 					</div>
 					<div class="mdui-panel-item-body">
 						{% for i in v %}
 						<p>{{ i }}</p>
 						{% endfor %}
+						<div class="mdui-panel-item-actions">
+							<button class="mdui-btn mdui-ripple" mdui-panel-item-close>cancel</button>
+							<button class="mdui-btn mdui-ripple" onclick="window.open('{{ k }}', '_blank');">see in github</button>
+						</div>
 					</div>
 				</div>
 				{% endfor %}

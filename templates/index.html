@@ -37,11 +37,12 @@
 					<p>Sorted by the last commit time. Click on rows for commit details.</p>
 				</div>
 
-				{% for k, v in res %}
+				{% for k, v, c in res %}
 				<div class="mdui-panel-item">
 					<div class="mdui-panel-item-header">
 						<div class="mdui-panel-item-title">{{ k[19:] }}</div>
 						<div class="mdui-panel-item-summary">Last commit: {{ v[0] }}</div>
+                        <div align="right"><small>{{ c[0] }} files, {{ c[1] }} lines</small></div>
 					</div>
 					<div class="mdui-panel-item-body">
 						<div class="mdui-panel-item-actions">
